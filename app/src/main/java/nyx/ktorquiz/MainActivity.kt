@@ -83,7 +83,7 @@ class MainActivity : ComponentActivity() {
                     Modifier
                         .fillMaxWidth()
                         .background(if (selectedIndex == index) LightGray else Transparent)
-                        .clickable {
+                        .clickable(!showAnswer) {
                             selectIndex(index)
                         }
                         .padding(10.dp),
@@ -91,7 +91,9 @@ class MainActivity : ComponentActivity() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    RadioButton(selected = selectedIndex == index, onClick = { selectIndex(index) })
+                    RadioButton(
+                        selected = selectedIndex == index,
+                        onClick = { if (!showAnswer) selectIndex(index) })
                     Text(answer, Modifier.padding(start = 10.dp))
                 }
             }
